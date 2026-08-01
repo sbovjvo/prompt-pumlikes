@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createScenes, markdown, sceneSafety, seedProject } from "../public/js/data.js";
+import { amuletBroadcastProject, amuletKnowledge, createScenes, markdown, sceneSafety, seedProject, videoPrompt } from "../public/js/data.js";
 
 test("สร้าง storyboard ตามจำนวนซีนที่ขอ", () => {
   const scenes = createScenes("ทุเรียน", 5);
@@ -32,9 +32,17 @@ test("ส่งออก Markdown มีส่วนของบทพูดแ�
 });
 
 test("Video prompt เพิ่มคำสั่งเสียงชื่อเว็บไซต์และลายน้ำแบบ post-render ได้", async () => {
-  const { videoPrompt } = await import("../public/js/data.js");
   const scene = createScenes("โกดังสินค้า", 1)[0];
   const prompt = videoPrompt(scene, { name: "pumlikes.com", speakName: true, watermarkEnabled: true, watermarkPosition: "bottom-right" });
   assert.match(prompt, /say the website name/);
   assert.match(prompt, /composited after generation/);
+});
+
+test("ตัวอย่างพระเครื่องมี 3 ซีนแบบ macro และไม่ให้โมเดลประดิษฐ์เลข", () => {
+  const project = amuletBroadcastProject();
+  assert.equal(project.category, amuletKnowledge.category);
+  assert.equal(project.scenes.length, 3);
+  assert.ok(project.scenes.every((scene) => scene.format === "amulet" && scene.tokens.length >= 17 && scene.tokens.length <= 20));
+  assert.match(project.scenes[0].imagePrompt, /Do not invent legible serial numbers/);
+  assert.match(videoPrompt(project.scenes[0], project.brand), /No faces or bodies/);
 });
