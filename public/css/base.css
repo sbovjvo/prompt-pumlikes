@@ -1,0 +1,61 @@
+:root {
+  --surface-0: #11131d;
+  --surface-1: #191c28;
+  --surface-2: #232737;
+  --surface-3: #303648;
+  --border-subtle: rgba(255, 255, 255, .08);
+  --border-default: rgba(255, 255, 255, .14);
+  --border-strong: rgba(255, 255, 255, .24);
+  --accent: #67d7fa;
+  --accent-hover: #a0e7fb;
+  --accent-press: #35bce9;
+  --accent-soft: rgba(103, 215, 250, .14);
+  --warm: #ffb26b;
+  --success: #65dba7;
+  --warning: #ffc36b;
+  --error: #ff868c;
+  --text-primary: #f7f8fd;
+  --text-secondary: #c2c8d8;
+  --text-tertiary: #939bae;
+  --font-sans: "Noto Sans Thai", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --text-xs: clamp(.69rem, .66rem + .15vw, .75rem);
+  --text-sm: clamp(.81rem, .78rem + .18vw, .9rem);
+  --text-base: clamp(.9rem, .84rem + .22vw, 1rem);
+  --text-lg: clamp(1rem, .94rem + .32vw, 1.14rem);
+  --text-xl: clamp(1.18rem, 1.05rem + .55vw, 1.42rem);
+  --text-2xl: clamp(1.45rem, 1.22rem + .9vw, 1.86rem);
+  --text-3xl: clamp(1.9rem, 1.5rem + 1.4vw, 2.45rem);
+  --text-4xl: clamp(2.4rem, 1.78rem + 2.4vw, 3.7rem);
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --ease-ui: cubic-bezier(.2,.8,.2,1);
+  --ease-emphasis: cubic-bezier(.16,1,.3,1);
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --ring-focus: 0 0 0 2px var(--surface-0), 0 0 0 4px var(--accent);
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--surface-0); color: var(--text-primary); }
+body { min-width: 320px; margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: 1.55; background: var(--surface-0); color: var(--text-primary); }
+button, input, select, textarea { font: inherit; }
+button { border: 0; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; box-shadow: var(--ring-focus); }
+button:disabled { cursor: not-allowed; opacity: .48; }
+textarea { resize: vertical; }
+.skip-link { position: fixed; left: var(--space-4); top: -60px; z-index: 100; background: var(--accent); color: var(--surface-0); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); transition: top var(--dur-fast) var(--ease-ui); }
+.skip-link:focus { top: var(--space-4); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; } }
