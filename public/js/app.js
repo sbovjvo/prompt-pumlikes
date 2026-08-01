@@ -1,4 +1,4 @@
-import { amuletBroadcastProject, amuletKnowledge, createScenes, imagePrompt, markdown, sceneSafety, seedProject, videoPrompt } from "./data.js?v=4";
+import { amuletBroadcastProject, amuletKnowledge, createScenes, imagePrompt, markdown, sceneSafety, seedProject, videoPrompt } from "./data.js?v=5";
 
 const STORAGE_KEY = "prompt-pumlikes-project-v2";
 const categories = ["โกดังสินค้า", "ทุเรียน", "ผลไม้สด", "พระเครื่องและของสะสม", "เสื้อผ้า", "รองเท้า", "เครื่องสำอาง", "สกินแคร์", "กระเป๋า", "ของใช้ในบ้าน", "อุปกรณ์ครัว", "อุปกรณ์ไลฟ์สด", "แก็ดเจ็ต", "อาหารและขนม", "เครื่องดื่ม", "สินค้าแม่และเด็ก", "สินค้า OTOP", "อื่น ๆ"];
