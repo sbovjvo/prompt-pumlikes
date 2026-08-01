@@ -17,6 +17,12 @@ export function seedProject() {
     location: "โกดังสินค้าและมุมไลฟ์สด",
     mood: "จริงใจและมีพลัง",
     templateId: "warehouse",
+    brand: {
+      name: "pumlikes.com",
+      speakName: false,
+      watermarkEnabled: false,
+      watermarkPosition: "bottom-right"
+    },
     createdAt: new Date().toISOString(),
     scenes: createScenes("โกดังสินค้า", 3)
   };
@@ -47,8 +53,10 @@ export function imagePrompt(category, title, index) {
   return `Vertical 9:16 commercial still, scene ${index + 1}: ${title}. Friendly Thai woman aged 25–27, confident and natural, dark brown long hair, muted blue blazer, inside a clean ${category} live-selling setup. Natural hand gesture, professional phone tripod and ring light, warm clean lighting, medium shot, natural lens, subtle depth of field, active but blurred background. Keep the same face, clothing, location, product placement and lighting across all scenes. Leave clean top and bottom safe areas for Thai overlay added later. No embedded text, no generated logos, high detail.`;
 }
 
-export function videoPrompt(scene) {
-  return `Vertical 9:16 video, ${scene.duration} seconds. Start in ${scene.camera}. A Thai woman aged 25–27 speaks naturally to camera while presenting products, with ${scene.purpose.toLowerCase()} energy. Her mouth syncs accurately to Thai voice on every syllable; no overlapping speech. Smooth camera movement, gentle background activity, warm clean light. End on a stable frame that connects to the next scene. No text or captions rendered inside the generated video.`;
+export function videoPrompt(scene, brand = {}) {
+  const spokenName = brand.speakName ? ` Have the character naturally say the website name “${brand.name || "pumlikes.com"}” once in Thai; use the pronunciation “พัม ไล้ก์ ดอท คอม” for voice generation.` : " Do not require the character to mention a website name.";
+  const watermark = brand.watermarkEnabled ? ` Add a persistent HTML/video-render overlay watermark “${brand.name || "pumlikes.com"}” at ${brand.watermarkPosition || "bottom-right"}; this must be composited after generation, never drawn by the video model.` : " No persistent website watermark.";
+  return `Vertical 9:16 video, ${scene.duration} seconds. Start in ${scene.camera}. A Thai woman aged 25–27 speaks naturally to camera while presenting products, with ${scene.purpose.toLowerCase()} energy. Her mouth syncs accurately to Thai voice on every syllable; no overlapping speech. Smooth camera movement, gentle background activity, warm clean light. End on a stable frame that connects to the next scene.${spokenName}${watermark} No text or captions rendered inside the generated video.`;
 }
 
 export function sceneSafety(scene) {
@@ -58,7 +66,8 @@ export function sceneSafety(scene) {
 }
 
 export function markdown(project) {
-  const header = `# ${project.title}\n\n- หมวดสินค้า: ${project.category}\n- แพลตฟอร์ม: ${project.platform}\n- อัตราส่วน: 9:16\n- โหมด: Prompt Only\n\n`;
+  const brand = project.brand || {};
+  const header = `# ${project.title}\n\n- หมวดสินค้า: ${project.category}\n- แพลตฟอร์ม: ${project.platform}\n- อัตราส่วน: 9:16\n- โหมด: Prompt Only\n- ให้ตัวละครพูดชื่อเว็บไซต์: ${brand.speakName ? `ใช่ (${brand.name})` : "ไม่"}\n- ลายน้ำเว็บไซต์ตลอดวิดีโอ: ${brand.watermarkEnabled ? `ใช่ (${brand.name}, ${brand.watermarkPosition})` : "ไม่"}\n\n`;
   const scenes = project.scenes.map((scene) => `## ซีน ${scene.number}: ${scene.title}\n\n**เป้าหมาย:** ${scene.purpose}\n\n**บทพูด (แสดงผล):** ${scene.display}\n\n**คำอ่านสำหรับ AI Voice:** ${scene.pronunciation}\n\n**จำนวน Canonical tokens:** ${scene.tokens.length}\n\n**ข้อความบนจอ:** ${scene.overlay}\n\n**Subtitle:** ${scene.subtitle}\n\n**Image prompt:**\n${scene.imagePrompt}\n\n**Video prompt:**\n${scene.videoPrompt}\n\n**Negative prompt:**\n${scene.negativePrompt}`).join("\n\n---\n\n");
   return `${header}${scenes}\n\n---\n\n_ผลลัพธ์ขึ้นอยู่กับเนื้อหา สินค้า ช่วงเวลา และรูปแบบการไลฟ์ของแต่ละบัญชี_\n`;
 }
