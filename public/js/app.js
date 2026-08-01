@@ -1,4 +1,4 @@
-import { amuletBroadcastProject, amuletKnowledge, createScenes, imagePrompt, markdown, sceneSafety, seedProject, videoPrompt } from "./data.js?v=5";
+import { amuletBroadcastProject, amuletKnowledge, createScenes, imagePrompt, markdown, sceneSafety, seedProject, videoPrompt } from "./data.js?v=6";
 
 const STORAGE_KEY = "prompt-pumlikes-project-v2";
 const categories = ["โกดังสินค้า", "ทุเรียน", "ผลไม้สด", "พระเครื่องและของสะสม", "เสื้อผ้า", "รองเท้า", "เครื่องสำอาง", "สกินแคร์", "กระเป๋า", "ของใช้ในบ้าน", "อุปกรณ์ครัว", "อุปกรณ์ไลฟ์สด", "แก็ดเจ็ต", "อาหารและขนม", "เครื่องดื่ม", "สินค้าแม่และเด็ก", "สินค้า OTOP", "อื่น ๆ"];
@@ -52,7 +52,7 @@ function projectControls() {
 function sceneCard(scene) {
   const active = scene.id === selectedId;
   const valid = scene.tokens.length >= 17 && scene.tokens.length <= 20;
-  return `<article class="scene-card ${active ? "active" : ""}"><button class="scene-select" data-select-scene="${scene.id}"><span class="scene-number">SCENE ${String(scene.number).padStart(2, "0")}</span><strong>${esc(scene.title)}</strong><small>${esc(scene.purpose)} · ${scene.duration} วินาที</small></button><label class="scene-check"><input type="checkbox" data-select-multi="${scene.id}" ${selectedScenes.has(scene.id) ? "checked" : ""} aria-label="เลือกซีน ${scene.number}"/><span class="status ${valid ? "status-good" : "status-warn"}">${scene.tokens.length} คำ</span></label></article>`;
+  return `<article class="scene-card ${active ? "active" : ""}"><label class="scene-check"><input type="checkbox" data-select-multi="${scene.id}" ${selectedScenes.has(scene.id) ? "checked" : ""} aria-label="เลือกซีน ${scene.number}"/></label><button class="scene-select" data-select-scene="${scene.id}"><span class="scene-number">SCENE ${String(scene.number).padStart(2, "0")}</span><strong>${esc(scene.title)}</strong><small>${esc(scene.purpose)} · ${scene.duration} วินาที</small></button><span class="status ${valid ? "status-good" : "status-warn"}">${scene.tokens.length} คำ</span></article>`;
 }
 function preview(scene) {
   const position = state.brand.watermarkPosition || "bottom-right";
