@@ -27,9 +27,11 @@ createServer((req, res) => {
     return res.end("ไม่พบหน้านี้");
   }
 
+  const extension = extname(file);
+  const cacheControl = [".html", ".css", ".js"].includes(extension) ? "no-cache" : "public, max-age=3600";
   res.writeHead(200, {
-    "content-type": types[extname(file)] || "application/octet-stream",
-    "cache-control": "public, max-age=3600",
+    "content-type": types[extension] || "application/octet-stream",
+    "cache-control": cacheControl,
     "x-content-type-options": "nosniff"
   });
   createReadStream(file).pipe(res);
