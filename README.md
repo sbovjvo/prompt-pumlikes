@@ -2,6 +2,20 @@
 
 เว็บแอปสำหรับสร้างไอเดีย Storyboard ซีนต่อเนื่อง Prompt ภาพ Prompt วิดีโอ บทพูดภาษาไทย คำอ่านสำหรับเสียง AI ซับไตเติล และชุดสื่อโปรโมตสำหรับ `pumlikes.com`
 
+## เริ่มใช้งาน
+
+แอปเวอร์ชันนี้เป็น **Prompt Only Mode** ที่ทำงานโดยไม่ต้องมี API Key ใช้สร้างและแก้ Storyboard, Prompt ภาพ/วิดีโอ, บทพูดที่แสดงต่อผู้ชม, คำอ่านสำหรับ AI Voice, คัดลอกผลลัพธ์ และ Export Markdown/JSON ได้
+
+```bash
+npm start
+```
+
+- หน้าเว็บ: `http://localhost:3000`
+- Health check: `http://localhost:3000/health`
+- ทดสอบ: `npm test`
+
+Railway จะใช้ `npm start` และตัวแปร `PORT` โดยอัตโนมัติ จึงไม่ต้องเพิ่ม Secret สำหรับเวอร์ชันนี้
+
 ## Production
 
 - Web App: `https://prompt-pumlikes-production.up.railway.app/`
