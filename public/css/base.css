@@ -3,9 +3,9 @@
   --surface-1: #191c28;
   --surface-2: #232737;
   --surface-3: #303648;
-  --border-subtle: rgba(255, 255, 255, .08);
-  --border-default: rgba(255, 255, 255, .14);
-  --border-strong: rgba(255, 255, 255, .24);
+  --border-subtle: rgba(255, 255, 255, .1);
+  --border-default: rgba(255, 255, 255, .18);
+  --border-strong: rgba(255, 255, 255, .32);
   --accent: #67d7fa;
   --accent-hover: #a0e7fb;
   --accent-press: #35bce9;
@@ -15,8 +15,8 @@
   --warning: #ffc36b;
   --error: #ff868c;
   --text-primary: #f7f8fd;
-  --text-secondary: #c2c8d8;
-  --text-tertiary: #939bae;
+  --text-secondary: #d6dbea;
+  --text-tertiary: #aeb6c8;
   --font-sans: "Noto Sans Thai", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
   --text-xs: clamp(.69rem, .66rem + .15vw, .75rem);
