@@ -30,3 +30,11 @@ test("ส่งออก Markdown มีส่วนของบทพูดแ�
   assert.match(output, /บทพูด \(แสดงผล\)/);
   assert.match(output, /Image prompt/);
 });
+
+test("Video prompt เพิ่มคำสั่งเสียงชื่อเว็บไซต์และลายน้ำแบบ post-render ได้", async () => {
+  const { videoPrompt } = await import("../public/js/data.js");
+  const scene = createScenes("โกดังสินค้า", 1)[0];
+  const prompt = videoPrompt(scene, { name: "pumlikes.com", speakName: true, watermarkEnabled: true, watermarkPosition: "bottom-right" });
+  assert.match(prompt, /say the website name/);
+  assert.match(prompt, /composited after generation/);
+});
