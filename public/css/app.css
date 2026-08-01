@@ -154,6 +154,10 @@
 .knowledge-list article { padding: var(--space-3); border-radius: var(--radius-md); background: var(--surface-2); }
 .knowledge-list strong { font-size: var(--text-sm); }
 .knowledge-list p { margin: var(--space-1) 0 0; color: var(--text-secondary); font-size: var(--text-xs); }
+.category-knowledge { display: grid; gap: var(--space-3); border: 1px solid rgba(103,215,250,.25); background: linear-gradient(145deg, rgba(103,215,250,.12), var(--surface-2) 72%) !important; }
+.category-knowledge .tag { width: fit-content; color: var(--accent); }
+.knowledge-rule-list { display: grid; gap: var(--space-2); margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: var(--text-xs); line-height: 1.55; }
+.category-knowledge .btn { width: 100%; }
 .workspace { display: grid; gap: var(--space-4); padding: var(--space-4); }
 .storyboard-head { display: flex; justify-content: space-between; align-items: start; gap: var(--space-3); }
 .storyboard-head h2, .panel-head h2 { margin: 0; font-size: var(--text-lg); letter-spacing: -.02em; }
