@@ -1,0 +1,15 @@
+{
+  "name": "prompt-pumlikes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prompt-only storyboard studio for pumlikes.com",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
